@@ -19,6 +19,7 @@
         </processorPath>
         <module name="api-gateway" />
         <module name="discovery-server" />
+        <module name="user-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -31,6 +32,7 @@
       <module name="api-gateway" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="untitled" options="-parameters" />
+      <module name="user-service" options="-parameters" />
     </option>
   </component>
 </project>
