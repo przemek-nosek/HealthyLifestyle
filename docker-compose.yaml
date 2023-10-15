@@ -1,1 +1,49 @@
 version: '3.8'
+
+volumes:
+  postgres_data:
+    driver: local
+  pgadmin_data:
+
+services:
+  postgres:
+    container_name: postgres # postgres-keycloak
+    image: postgres:16.0
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: keycloak
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:7
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pszm@pszm.pl
+      PGADMIN_DEFAULT_PASSWORD: pszm
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:22.0.3
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres/keycloak
+      KC_DB_USERNAME: admin
+      KC_DB_PASSWORD: admin
+    ports:
+      - "8181:8080"
+    command:
+      - start-dev
+    depends_on:
+      - postgres
