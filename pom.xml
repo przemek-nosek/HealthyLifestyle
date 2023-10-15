@@ -17,7 +17,7 @@
     <modules>
         <module>discovery-server</module>
         <module>api-gateway</module>
-        <module>user-service</module>
+        <module>additional-user-data-service</module>
     </modules>
 
     <properties>

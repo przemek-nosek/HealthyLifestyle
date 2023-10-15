@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: additional-use-data-service
+  security:
+    oauth2:
+      resourceServer:
+        jwt:
+          issuer-uri: http://localhost:8181/realms/healthy-lifestyle
+server:
+  port: 0
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
