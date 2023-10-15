@@ -25,7 +25,6 @@ class KeycloakRoleConverter implements Converter<Jwt, AbstractAuthenticationToke
     private static final String ROLE_PREFIX = "ROLE_";
     private final JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
 
-
     @Override
     public AbstractAuthenticationToken convert(@NonNull Jwt jwt) {
         Collection<GrantedAuthority> authorities = Stream.concat(
