@@ -47,3 +47,4 @@ services:
       - start-dev
     depends_on:
       - postgres
+
