@@ -19,8 +19,8 @@ spring:
           uri: http://localhost:8761
           predicates:
             - Path=/eureka/**
-        - id: user-service
-          uri: lb://user-service
+        - id: additional-user-data-service
+          uri: lb://additional-user-data-service
           predicates:
             - Path=/users/**
 

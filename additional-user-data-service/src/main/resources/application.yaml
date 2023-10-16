@@ -1,16 +1,41 @@
+server:
+  port: 0
+
 spring:
   application:
-    name: additional-use-data-service
+    name: additional-user-data-service
   security:
     oauth2:
       resourceServer:
         jwt:
           issuer-uri: http://localhost:8181/realms/healthy-lifestyle
-server:
-  port: 0
+  datasource:
+    url: jdbc:postgresql://localhost:5432/additional-user-data-service
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        hbm2ddl:
+          auto: none
+
 eureka:
   client:
     service-url:
       default-zone: http://localhost:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${random.value}
+
+management:
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
