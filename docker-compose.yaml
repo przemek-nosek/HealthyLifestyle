@@ -7,30 +7,31 @@ volumes:
 
 services:
   postgres:
-    container_name: postgres # postgres-keycloak
+    container_name: postgres
     image: postgres:16.0
     environment:
       POSTGRES_PASSWORD: admin
       POSTGRES_USER: admin
       POSTGRES_DB: keycloak
       PGDATA: /var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+#      - ./sql/database-create.sql:/docker-entrypoint-initdb.d/schema.sql
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4:7
-    restart: always
     ports:
       - "8888:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: pszm@pszm.pl
-      PGADMIN_DEFAULT_PASSWORD: pszm
+      PGADMIN_DEFAULT_EMAIL: admin@admin.pl
+      PGADMIN_DEFAULT_PASSWORD: admin
     volumes:
       - pgadmin_data:/var/lib/pgadmin
-    depends_on:
-      - postgres
   keycloak:
     container_name: keycloak
     image: quay.io/keycloak/keycloak:22.0.3
@@ -47,4 +48,3 @@ services:
       - start-dev
     depends_on:
       - postgres
-
