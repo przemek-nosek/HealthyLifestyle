@@ -22,7 +22,7 @@ spring:
         - id: additional-user-data-service
           uri: lb://additional-user-data-service
           predicates:
-            - Path=/users/**
+            - Path=/users/** , /users/swagger-ui/** , /users/v3/api-docs/**
 
 logging:
   level:
