@@ -40,8 +40,19 @@ management:
     readinessstate:
       enabled: true
 
+#springdoc:
+#  swagger-ui:
+#    path: /users/swagger-ui
+#  api-docs:
+#    path: /users/api-docs
+
+openapi:
+  service:
+    title: Additional User Data Service
+    version: 1.0.0
+    url: http://localhost:8080 #api gateway url
 springdoc:
   swagger-ui:
     path: /users/swagger-ui
   api-docs:
-    path: /users/api-docs
+    path: /users/v3/api-docs #these urls will used to load the swagger ui of this service by the api gateway
