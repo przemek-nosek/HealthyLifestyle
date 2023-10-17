@@ -16,10 +16,8 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-    private static final String[] SWAGGER_URL_PATHS = new String[]{
-            "/users/swagger-ui/index.html", "/users/swagger-resources/**",
-            "/users/v2/api-docs/**", "/users/webjars/**", "/users/swaggerfox.js", "/users/swagger-ui/**", "/users/v3/api-docs/**", "/users/api-docs",
-    "/users/api-docs/**"};
+    private static final String[] SWAGGER_WHITELIST_URLS = new String[]{
+            "/users/swagger-resources/**", "/users/webjars/**", "/users/swagger-ui/**", "/users/v3/api-docs/**"};
 
     private final KeycloakRoleConverter keycloakRoleConverter;
 
@@ -28,7 +26,7 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry ->
-                        registry.requestMatchers(SWAGGER_URL_PATHS).permitAll()
+                        registry.requestMatchers(SWAGGER_WHITELIST_URLS).permitAll()
                                 .anyRequest().authenticated())
                 .oauth2ResourceServer(configurer -> configurer.jwt(jwtConfigurer ->
                         jwtConfigurer.jwtAuthenticationConverter(keycloakRoleConverter)))
