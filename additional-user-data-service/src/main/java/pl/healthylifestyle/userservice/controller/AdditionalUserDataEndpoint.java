@@ -25,7 +25,7 @@ class AdditionalUserDataEndpoint {
 
     @PostMapping
     @PreAuthorize("hasAnyRole('user','ceo')")
-    ResponseEntity<AdditionalUserDataResponse> a(@Valid @RequestBody AdditionalUserDataRequest request,
+    ResponseEntity<AdditionalUserDataResponse> createAdditionalUserData(@Valid @RequestBody AdditionalUserDataRequest request,
                                                         JwtAuthenticationToken jwt) {
 
         AdditionalUserDataDto additionalUserDataDto = additionalUserDataMapper.toAdditionalUserDataDto(request, jwt.getName());

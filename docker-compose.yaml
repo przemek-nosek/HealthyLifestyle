@@ -48,3 +48,5 @@ services:
       - start-dev
     depends_on:
       - postgres
+    volumes:
+      - ./realm/:/opt/keycloak/data/import/
