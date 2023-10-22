@@ -18,7 +18,7 @@ import java.util.List;
 public class OpenApiConfig {
 
     @Bean
-    public OpenAPI customOpenAPI(
+    public OpenAPI openAPI(
             @Value("${openapi.service.title}") String serviceTitle,
             @Value("${openapi.service.version}") String serviceVersion,
             @Value("${openapi.service.url}") String url) {
