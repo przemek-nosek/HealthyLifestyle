@@ -31,6 +31,7 @@ public class SecurityConfig {
                 .oauth2ResourceServer(configurer -> configurer.jwt(jwtConfigurer ->
                         jwtConfigurer.jwtAuthenticationConverter(keycloakRoleConverter)))
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(STATELESS))
+//                .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint())
                 .build();
     }
 }

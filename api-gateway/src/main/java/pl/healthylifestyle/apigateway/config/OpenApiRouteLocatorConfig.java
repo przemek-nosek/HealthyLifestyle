@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 
 @Configuration
-public class OpenApiConfig {
+public class OpenApiRouteLocatorConfig {
 
     private static final String USERS_PATH = "/users/v3/api-docs";
     private static final String USERS_PATH_URI = "lb://additional-user-data-service";
