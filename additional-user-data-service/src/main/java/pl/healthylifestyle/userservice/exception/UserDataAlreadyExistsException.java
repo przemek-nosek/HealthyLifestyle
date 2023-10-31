@@ -1,5 +1,8 @@
 package pl.healthylifestyle.userservice.exception;
 
+import lombok.Getter;
+
+@Getter
 public class UserDataAlreadyExistsException extends RuntimeException {
 
     private final String errorLabel;
