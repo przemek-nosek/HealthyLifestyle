@@ -26,12 +26,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ErrorMessage> handleAccessDeniedException(AccessDeniedException ex, WebRequest request) {
         return new ResponseEntity<>(new ErrorMessage(HttpStatus.FORBIDDEN, HttpStatus.FORBIDDEN.value(), NOW,
-                "good soup", new ArrayList<>()), new HttpHeaders(), HttpStatus.FORBIDDEN);
+                ex.getMessage(), null, new ArrayList<>()), new HttpHeaders(), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(UserDataAlreadyExistsException.class)
     protected ResponseEntity<ErrorMessage> handleUserDataAlreadyExistsException(UserDataAlreadyExistsException ex) {
-        ErrorMessage errorMessage = getErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage(), Collections.emptyList());
+        ErrorMessage errorMessage = getErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage(), ex.getErrorLabel(), Collections.emptyList());
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
 
@@ -48,11 +48,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             errors.add(fieldName + " - " + errorMessage);
         });
 
-        return new ResponseEntity<>(getErrorMessage((HttpStatus) status, ex.getMessage(), errors), status);
+        return new ResponseEntity<>(getErrorMessage((HttpStatus) status, ex.getMessage(), null, errors), status);
     }
 
 
-    private ErrorMessage getErrorMessage(HttpStatus httpStatus, String message, Collection<String> errors) {
-        return new ErrorMessage(httpStatus, httpStatus.value(), LocalDateTime.now(), message, errors);
+    private ErrorMessage getErrorMessage(HttpStatus httpStatus, String message, String errorLabel, Collection<String> errors) {
+        return new ErrorMessage(httpStatus, httpStatus.value(), LocalDateTime.now(), message, errorLabel, errors);
     }
 }

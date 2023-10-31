@@ -3,7 +3,6 @@ package pl.healthylifestyle.userservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.Temporal;
 
 //todo: config server/bootstrap properties
 //todo: create docker for application

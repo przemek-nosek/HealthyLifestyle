@@ -1,1 +1,0 @@
-CREATE DATABASE "additional-user-data"
