@@ -22,6 +22,6 @@ public class EnumListToStringConverter implements AttributeConverter<List<Allerg
 
     @Override
     public List<Allergen> convertToEntityAttribute(String dbData) {
-        return Arrays.stream(dbData.split(DELIMITER)).map(Allergen::valueOf).toList();
+        return Arrays.stream(dbData.split(DELIMITER)).map(Allergen::valueOf).collect(Collectors.toList());
     }
 }
