@@ -1,7 +1,6 @@
 package pl.healthylifestyle.userservice.dto;
 
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import pl.healthylifestyle.userservice.entity.Allergen;
@@ -17,5 +16,5 @@ public record UpdateAdditionalUserDataRequest(
         @NotNull(message = "Gender can't be null.")
         Gender gender,
         List<Allergen> allergens
-        ) {
+) {
 }

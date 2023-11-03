@@ -16,7 +16,10 @@ import pl.healthylifestyle.userservice.exception.UserDataAlreadyExistsException;
 import pl.healthylifestyle.userservice.exception.dto.ErrorMessage;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {

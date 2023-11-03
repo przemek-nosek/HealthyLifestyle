@@ -1,11 +1,10 @@
 package pl.healthylifestyle.userservice.mapper;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import pl.healthylifestyle.userservice.dto.AdditionalUserDataDto;
-import pl.healthylifestyle.userservice.dto.CreateAdditionalUserDataRequest;
 import pl.healthylifestyle.userservice.dto.AdditionalUserDataResponse;
+import pl.healthylifestyle.userservice.dto.CreateAdditionalUserDataRequest;
 import pl.healthylifestyle.userservice.dto.UpdateAdditionalUserDataRequest;
 import pl.healthylifestyle.userservice.entity.AdditionalUserData;
 

@@ -7,8 +7,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 import pl.healthylifestyle.userservice.dto.AdditionalUserDataDto;
-import pl.healthylifestyle.userservice.dto.CreateAdditionalUserDataRequest;
 import pl.healthylifestyle.userservice.dto.AdditionalUserDataResponse;
+import pl.healthylifestyle.userservice.dto.CreateAdditionalUserDataRequest;
 import pl.healthylifestyle.userservice.dto.UpdateAdditionalUserDataRequest;
 import pl.healthylifestyle.userservice.mapper.AdditionalUserDataMapper;
 import pl.healthylifestyle.userservice.service.AdditionalUserDataService;
@@ -18,8 +18,8 @@ import pl.healthylifestyle.userservice.service.AdditionalUserDataService;
 @RequestMapping("/users")
 @RequiredArgsConstructor
 class AdditionalUserDataEndpoint {
-    private final  AdditionalUserDataService additionalUserDataService;
-    private final  AdditionalUserDataMapper additionalUserDataMapper;
+    private final AdditionalUserDataService additionalUserDataService;
+    private final AdditionalUserDataMapper additionalUserDataMapper;
 
     @GetMapping("/{uuid}")
     @PreAuthorize("hasAnyRole('admin', 'ceo') or #uuid == #jwt.name")
