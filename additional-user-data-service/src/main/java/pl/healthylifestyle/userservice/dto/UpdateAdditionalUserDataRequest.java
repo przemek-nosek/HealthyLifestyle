@@ -7,6 +7,7 @@ import pl.healthylifestyle.userservice.entity.Allergen;
 import pl.healthylifestyle.userservice.entity.Gender;
 
 import java.util.List;
+import java.util.Set;
 
 @Builder
 public record UpdateAdditionalUserDataRequest(
@@ -15,6 +16,6 @@ public record UpdateAdditionalUserDataRequest(
         int age,
         @NotNull(message = "Gender can't be null.")
         Gender gender,
-        List<Allergen> allergens
+        Set<Allergen> allergens
 ) {
 }
