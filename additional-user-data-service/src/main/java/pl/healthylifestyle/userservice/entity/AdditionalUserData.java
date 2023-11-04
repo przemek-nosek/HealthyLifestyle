@@ -2,19 +2,17 @@ package pl.healthylifestyle.userservice.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import pl.healthylifestyle.userservice.entity.converter.EnumListToStringConverter;
+import lombok.*;
+import pl.healthylifestyle.userservice.entity.converter.EnumSetToStringConverter;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class AdditionalUserData {
 
     @Id
@@ -25,6 +23,6 @@ public class AdditionalUserData {
     private int age;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @Convert(converter = EnumListToStringConverter.class)
-    private List<Allergen> allergens;
+    @Convert(converter = EnumSetToStringConverter.class)
+    private Set<Allergen> allergens;
 }

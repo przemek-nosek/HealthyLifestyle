@@ -32,7 +32,8 @@ public record AdditionalUserDataService(
 
     public AdditionalUserDataResponse updateAdditionalUserData(AdditionalUserDataDto additionalUserDataDto) {
         return additionalUserDataRepository.findByUuid(additionalUserDataDto.uuid())
-                .map(user -> additionalUserDataMapper.updateAdditionalUserData(additionalUserDataDto, user))
+                .map(user -> additionalUserDataRepository.save(
+                        additionalUserDataMapper.updateAdditionalUserData(additionalUserDataDto, user)))
                 .map(additionalUserDataMapper::toAdditionalUserDataResponse)
                 .orElseThrow(() -> handleUserNotFound(additionalUserDataDto.uuid()));
     }

@@ -5,6 +5,7 @@ import pl.healthylifestyle.userservice.entity.Allergen;
 import pl.healthylifestyle.userservice.entity.Gender;
 
 import java.util.List;
+import java.util.Set;
 
 @Builder
 public record AdditionalUserDataResponse(
@@ -12,6 +13,6 @@ public record AdditionalUserDataResponse(
         String phoneNumber,
         int age,
         Gender gender,
-        List<Allergen> allergens
+        Set<Allergen> allergens
 ) {
 }
