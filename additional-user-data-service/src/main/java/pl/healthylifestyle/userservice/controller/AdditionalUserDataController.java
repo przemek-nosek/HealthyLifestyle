@@ -2,6 +2,7 @@ package pl.healthylifestyle.userservice.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
@@ -17,7 +18,7 @@ import pl.healthylifestyle.userservice.service.AdditionalUserDataService;
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
-class AdditionalUserDataEndpoint {
+class AdditionalUserDataController {
     private final AdditionalUserDataService additionalUserDataService;
     private final AdditionalUserDataMapper additionalUserDataMapper;
 
@@ -37,7 +38,7 @@ class AdditionalUserDataEndpoint {
             JwtAuthenticationToken jwt
     ) {
         AdditionalUserDataDto additionalUserDataDto = additionalUserDataMapper.toAdditionalUserDataDto(request);
-        return ResponseEntity.ok(additionalUserDataService.createAdditionalUserData(additionalUserDataDto));
+        return new ResponseEntity<>(additionalUserDataService.createAdditionalUserData(additionalUserDataDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{uuid}")

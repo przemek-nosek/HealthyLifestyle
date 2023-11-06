@@ -1,0 +1,52 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: measurement-service
+  security:
+    oauth2:
+      resourceServer:
+        jwt:
+          issuer-uri: http://localhost:8181/realms/healthy-lifestyle
+  datasource:
+    url: jdbc:postgresql://localhost:5432/measurement-service
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        hbm2ddl:
+          auto: none
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+
+management:
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
+openapi:
+  service:
+    title: Measurement Service
+    version: 1.0.0
+    url: http://localhost:8080 #api gateway url
+springdoc:
+  swagger-ui:
+    path: /measurements/swagger-ui
+  api-docs:
+    path: /measurements/v3/api-docs

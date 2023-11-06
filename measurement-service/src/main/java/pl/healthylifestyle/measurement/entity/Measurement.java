@@ -1,4 +1,4 @@
-package pl.healthylifestyle.userservice.entity;
+package pl.healthylifestyle.measurement.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,5 +31,7 @@ public class Measurement {
     private double forearmSize;
     private double bicepsSize;
     private LocalDate measurementDate;
+//    private LocalDate modificationDate;
+//    private boolean draft;
     private String userUuid;
 }

@@ -37,9 +37,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static pl.healthylifestyle.userservice.entity.Allergen.*;
 import static pl.healthylifestyle.userservice.entity.Gender.MALE;
 
-@WebMvcTest(AdditionalUserDataEndpoint.class)
+@WebMvcTest(AdditionalUserDataController.class)
 @Import(SecurityConfig.class)
-class AdditionalUserDataEndpointTest {
+class AdditionalUserDataControllerTest {
 
     private static final String BASE_URL = "/users";
     private static final String SPECIFIC_USER_UUID_URL = BASE_URL + "/{uuid}";
