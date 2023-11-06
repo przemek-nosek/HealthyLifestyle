@@ -23,6 +23,11 @@ spring:
           uri: lb://additional-user-data-service
           predicates:
             - Path=/users/**
+        - id: measurement-service
+          uri: lb://measurement-service
+          predicates:
+            - Path=/measurements/**
+
 
 logging:
   level:
@@ -39,3 +44,5 @@ springdoc:
         name: API Gateway Service
       - url: /users/v3/api-docs
         name: Additional User Data Service
+      - url: /measurements/v3/api-docs
+        name: Measurement Service

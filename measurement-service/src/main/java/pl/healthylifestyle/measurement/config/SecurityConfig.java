@@ -1,4 +1,4 @@
-package pl.healthylifestyle.userservice.config;
+package pl.healthylifestyle.measurement.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @RequiredArgsConstructor
 public class SecurityConfig {
     private static final String[] SWAGGER_WHITELIST_URLS = new String[]{
-            "/users/swagger-resources/**", "/users/webjars/**", "/users/swagger-ui/**", "/users/v3/api-docs/**"};
+            "/measurements/swagger-resources/**", "/measurements/webjars/**", "/measurements/swagger-ui/**", "/measurements/v3/api-docs/**"};
 
     private final KeycloakRoleConverter keycloakRoleConverter;
 
