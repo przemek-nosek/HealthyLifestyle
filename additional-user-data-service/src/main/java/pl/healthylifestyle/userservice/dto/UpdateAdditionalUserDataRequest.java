@@ -7,7 +7,6 @@ import lombok.Builder;
 import pl.healthylifestyle.userservice.entity.Allergen;
 import pl.healthylifestyle.userservice.entity.Gender;
 
-import java.util.List;
 import java.util.Set;
 
 @Builder

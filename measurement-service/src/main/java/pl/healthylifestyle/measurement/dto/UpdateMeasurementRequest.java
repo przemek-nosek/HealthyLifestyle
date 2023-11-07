@@ -6,7 +6,6 @@ import java.time.LocalDate;
 
 @Builder
 public record UpdateMeasurementRequest(
-        String uuid,
         double weight,
         double calfSize,
         double thighSize,
@@ -15,7 +14,6 @@ public record UpdateMeasurementRequest(
         double neckSize,
         double forearmSize,
         double bicepsSize,
-        LocalDate measurementDate,
-        String userUuid
+        LocalDate measurementDate
 ) {
 }

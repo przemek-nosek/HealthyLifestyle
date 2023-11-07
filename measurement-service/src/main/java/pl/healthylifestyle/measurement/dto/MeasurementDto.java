@@ -2,7 +2,7 @@ package pl.healthylifestyle.measurement.dto;
 
 import java.time.LocalDate;
 
-public record MeasurementDto (
+public record MeasurementDto(
         String uuid,
         double weight,
         double calfSize,
@@ -14,5 +14,5 @@ public record MeasurementDto (
         double bicepsSize,
         LocalDate measurementDate,
         String userUuid
-){
+) {
 }
