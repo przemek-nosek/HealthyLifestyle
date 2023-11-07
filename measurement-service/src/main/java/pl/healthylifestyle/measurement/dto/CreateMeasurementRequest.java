@@ -14,7 +14,6 @@ public record CreateMeasurementRequest(
         double neckSize,
         double forearmSize,
         double bicepsSize,
-        LocalDate measurementDate,
-        String userUuid
+        LocalDate measurementDate
 ) {
 }

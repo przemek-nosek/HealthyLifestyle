@@ -17,11 +17,11 @@ public interface MeasurementMapper {
     MeasurementResponse toMeasurementResponse(Measurement source);
 
     @Mapping(target = "uuid", expression = "java(UUID.randomUUID().toString())")
-    MeasurementDto toMeasurementDto(CreateMeasurementRequest source);
+    MeasurementDto toMeasurementDto(CreateMeasurementRequest source, String userUuid);
 
     Measurement toMeasurement(MeasurementDto source);
 
-    MeasurementDto toMeasurementDto(UpdateMeasurementRequest request);
+    MeasurementDto toMeasurementDto(UpdateMeasurementRequest request, String uuid, String userUuid);
 
     Measurement updateMeasurement(MeasurementDto measurementDto, @MappingTarget Measurement measurement);
 }

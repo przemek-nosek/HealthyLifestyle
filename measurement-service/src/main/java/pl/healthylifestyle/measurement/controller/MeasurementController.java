@@ -13,13 +13,14 @@ import pl.healthylifestyle.measurement.service.MeasurementService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/measurements/users/{userUuid}")
+@RequestMapping("/measurements")
 @RequiredArgsConstructor
 class MeasurementController {
     private final MeasurementService measurementService;
     private final MeasurementMapper measurementMapper;
 
-    @GetMapping("/measurements")
+
+    @GetMapping("/users/{userUuid}")
     @PreAuthorize("#userUuid == #jwt.name")
     ResponseEntity<List<MeasurementResponse>> getMeasurements(
             @PathVariable String userUuid,
@@ -27,16 +28,16 @@ class MeasurementController {
         return ResponseEntity.ok(measurementService.getMeasurements(userUuid));
     }
 
-    @GetMapping("/measurements/{uuid}")
+    @GetMapping("/{uuid}/users/{userUuid}")
     @PreAuthorize("#userUuid == #jwt.name")
     ResponseEntity<MeasurementResponse> getMeasurement(
-            @PathVariable String userUuid,
             @PathVariable String uuid,
+            @PathVariable String userUuid,
             JwtAuthenticationToken jwt) {
         return ResponseEntity.ok(measurementService.getMeasurement(uuid));
     }
 
-    @GetMapping("/measurements/latest")
+    @GetMapping("/latest/users/{userUuid}")
     @PreAuthorize("#userUuid == #jwt.name")
     ResponseEntity<MeasurementLastModificationResponse> getLastMeasurementDate(
             @PathVariable String userUuid,
@@ -44,24 +45,24 @@ class MeasurementController {
         return ResponseEntity.ok(measurementService.getLastMeasurementDate(userUuid));
     }
 
-    @PostMapping("/measurements")
+    @PostMapping("/users/{userUuid}")
     @PreAuthorize("#userUuid == #jwt.name")
     ResponseEntity<MeasurementResponse> createMeasurement(
             @PathVariable String userUuid,
             @RequestBody CreateMeasurementRequest request,
             JwtAuthenticationToken jwt) {
-        MeasurementDto measurementDto = measurementMapper.toMeasurementDto(request);
+        MeasurementDto measurementDto = measurementMapper.toMeasurementDto(request, userUuid);
         return new ResponseEntity<>(measurementService.createMeasurement(measurementDto), HttpStatus.CREATED);
     }
 
-    @PutMapping("/measurements/{uuid}")
+    @PutMapping("/{uuid}/users/{userUuid}")
     @PreAuthorize("#userUuid == #jwt.name")
     ResponseEntity<MeasurementResponse> updateMeasurement(
-            @PathVariable String userUuid,
             @PathVariable String uuid,
+            @PathVariable String userUuid,
             @RequestBody UpdateMeasurementRequest request,
             JwtAuthenticationToken jwt) {
-        MeasurementDto measurementDto = measurementMapper.toMeasurementDto(request);
+        MeasurementDto measurementDto = measurementMapper.toMeasurementDto(request, uuid, userUuid);
         return ResponseEntity.ok(measurementService.updateMeasurement(measurementDto));
     }
 }

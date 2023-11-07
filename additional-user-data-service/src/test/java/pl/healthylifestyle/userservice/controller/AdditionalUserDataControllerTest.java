@@ -64,7 +64,7 @@ class AdditionalUserDataControllerTest {
         //when
         MvcResult result = mockMvc.perform(get(SPECIFIC_USER_UUID_URL, UUID)
                         .with(jwt()
-                                .jwt(jwt -> jwt.claim(StandardClaimNames.SUB, "uuid"))))
+                                .jwt(jwt -> jwt.claim(StandardClaimNames.SUB, UUID))))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn();
@@ -102,9 +102,9 @@ class AdditionalUserDataControllerTest {
         MvcResult result = mockMvc.perform(post(BASE_URL)
                         .content(objectMapper.writeValueAsString(buildCreateAdditionalUserDataRequest()))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .with(jwt().jwt(jwt -> jwt.claim(StandardClaimNames.SUB, "uuid"))))
+                        .with(jwt().jwt(jwt -> jwt.claim(StandardClaimNames.SUB, UUID))))
                 .andDo(print())
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andReturn();
 
         //then
@@ -163,7 +163,7 @@ class AdditionalUserDataControllerTest {
         MvcResult result = mockMvc.perform(put(SPECIFIC_USER_UUID_URL, UUID)
                         .content(objectMapper.writeValueAsString(buildUpdateAdditionalUserDataRequest()))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .with(jwt().jwt(jwt -> jwt.claim(StandardClaimNames.SUB, "uuid"))))
+                        .with(jwt().jwt(jwt -> jwt.claim(StandardClaimNames.SUB, UUID))))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn();
