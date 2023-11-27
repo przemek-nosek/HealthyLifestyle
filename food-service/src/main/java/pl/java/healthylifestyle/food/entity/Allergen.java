@@ -1,4 +1,4 @@
-package pl.healthylifestyle.userservice.entity;
+package pl.java.healthylifestyle.food.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
