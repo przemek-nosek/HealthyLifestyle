@@ -19,6 +19,7 @@
         <module>api-gateway</module>
         <module>additional-user-data-service</module>
         <module>measurement-service</module>
+        <module>food-service</module>
     </modules>
 
     <properties>

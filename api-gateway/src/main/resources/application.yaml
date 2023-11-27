@@ -8,6 +8,12 @@ spring:
     name: api-gateway
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
       routes:
         - id: discovery-server
           uri: http://localhost:8761
@@ -27,6 +33,10 @@ spring:
           uri: lb://measurement-service
           predicates:
             - Path=/measurements/**
+        - id: food-service
+          uri: lb://food-service
+          predicates:
+            - Path=/foods/**
 
 
 logging:
@@ -46,3 +56,5 @@ springdoc:
         name: Additional User Data Service
       - url: /measurements/v3/api-docs
         name: Measurement Service
+      - url: /foods/v3/api-docs
+        name: Food Service
