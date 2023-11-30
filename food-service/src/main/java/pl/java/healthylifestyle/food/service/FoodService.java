@@ -22,7 +22,7 @@ public class FoodService {
     private final FoodMapper foodMapper;
 
     public Page<FoodResponse> findAll(Pageable pageable) {
-        String ryż = StringUtils.stripAccents("ę€óąśłżźćń");
+        String ryż = StringUtils.stripAccents("ę€óąśłżźćń").toLowerCase();
         System.out.println(ryż);
         return foodRepository.findAll(pageable)
                 .map(foodMapper::toFoodResponse);
