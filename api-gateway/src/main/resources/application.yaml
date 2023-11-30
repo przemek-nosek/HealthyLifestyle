@@ -14,6 +14,7 @@ spring:
             allowedOrigins: "*"
             allowedHeaders: "*"
             allowedMethods: "*"
+        add-to-simple-url-handler-mapping: true
       routes:
         - id: discovery-server
           uri: http://localhost:8761
