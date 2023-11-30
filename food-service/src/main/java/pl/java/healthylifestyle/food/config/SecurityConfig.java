@@ -3,6 +3,9 @@ package pl.java.healthylifestyle.food.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,6 +25,7 @@ public class SecurityConfig {
     private final KeycloakRoleConverter keycloakRoleConverter;
 
     @Bean
+    @Profile(value = {"!no_security"})
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
@@ -32,5 +36,11 @@ public class SecurityConfig {
                         jwtConfigurer.jwtAuthenticationConverter(keycloakRoleConverter)))
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(STATELESS))
                 .build();
+    }
+
+    @Bean
+    @Profile(value = {"no_security"}) //todo: for testing purposes - remove later
+    public SecurityFilterChain securityFilterChainNoSecurity(HttpSecurity http) throws Exception {
+        return http.authorizeHttpRequests(registry -> registry.requestMatchers("/foods/**").permitAll()).build();
     }
 }

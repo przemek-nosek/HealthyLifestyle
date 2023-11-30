@@ -17,12 +17,14 @@ public class ShopEnumSetToStringConverter implements AttributeConverter<Set<Shop
     @Override
     public String convertToDatabaseColumn(Set<Shop> attribute) {
         return attribute.stream()
-                .map(Shop::getValue)
+                .map(Shop::name)
                 .collect(Collectors.joining(DELIMITER));
     }
 
     @Override
     public Set<Shop> convertToEntityAttribute(String dbData) {
-        return Arrays.stream(dbData.split(DELIMITER)).map(Shop::valueOf).collect(Collectors.toSet());
+        return Arrays.stream(dbData.split(DELIMITER))
+                .map(Shop::valueOf)
+                .collect(Collectors.toSet());
     }
 }

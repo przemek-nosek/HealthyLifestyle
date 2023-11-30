@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 public enum AdditionalUserDataExceptionMessage {
 
     MEASUREMENT_NOT_FOUND_ERROR("Measurement %s not found"),
-    MEASUREMENT_ALREADY_EXISTS_ERROR("Measurement %s not found");
+    MEASUREMENT_ALREADY_EXISTS_ERROR("Measurement %s already exists");
 
     private final String message;
 }

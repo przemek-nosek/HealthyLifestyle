@@ -44,7 +44,7 @@ public record MeasurementService(
     }
 
     public MeasurementResponse createMeasurement(MeasurementDto measurementDto) {
-        measurementRepository.findByUuid(measurementDto.uuid())
+        measurementRepository.findByUuid(measurementDto.uuid()) //todo: remove check
                 .ifPresent(this::handleMeasurementExist);
         Measurement measurement = measurementRepository.save(measurementMapper.toMeasurement(measurementDto));
         return measurementMapper.toMeasurementResponse(measurement);
