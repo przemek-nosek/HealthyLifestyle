@@ -17,12 +17,14 @@ public class AllergenEnumSetToStringConverter implements AttributeConverter<Set<
     @Override
     public String convertToDatabaseColumn(Set<Allergen> attribute) {
         return attribute.stream()
-                .map(Allergen::getValue)
+                .map(Allergen::name)
                 .collect(Collectors.joining(DELIMITER));
     }
 
     @Override
     public Set<Allergen> convertToEntityAttribute(String dbData) {
-        return Arrays.stream(dbData.split(DELIMITER)).map(Allergen::valueOf).collect(Collectors.toSet());
+        return Arrays.stream(dbData.split(DELIMITER))
+                .map(Allergen::valueOf)
+                .collect(Collectors.toSet());
     }
 }

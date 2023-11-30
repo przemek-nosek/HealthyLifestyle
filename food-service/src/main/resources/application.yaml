@@ -1,7 +1,9 @@
 server:
-  port: 0
+  port: 9090
 
 spring:
+  profiles:
+    active: no_security
   application:
     name: food-service
   security:
@@ -20,7 +22,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         hbm2ddl:
           auto: none
-
+    show-sql: true
 eureka:
   client:
     service-url:

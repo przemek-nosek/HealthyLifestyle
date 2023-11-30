@@ -2,6 +2,8 @@ package pl.java.healthylifestyle.food.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import pl.java.healthylifestyle.food.entity.converter.AllergenEnumSetToStringConverter;
 import pl.java.healthylifestyle.food.entity.converter.ShopEnumSetToStringConverter;
 
@@ -13,12 +15,14 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EntityListeners(AuditingEntityListener.class)
 public class Food {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String uuid;
+    private String name;
     private double energy;
     private double carbohydrate;
     private double sugar;
@@ -32,4 +36,10 @@ public class Food {
     private Set<Shop> shops;
     @Convert(converter = AllergenEnumSetToStringConverter.class)
     private Set<Allergen> allergens;
+//    private byte[] files;
+    private boolean verified;
+    @CreatedBy
+    @Column(updatable = false)
+    private String createdBy;
+    private String verifiedBy;
 }
