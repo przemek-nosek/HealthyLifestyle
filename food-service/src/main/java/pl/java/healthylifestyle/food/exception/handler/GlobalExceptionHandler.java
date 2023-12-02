@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import pl.java.healthylifestyle.food.exception.FoodAlreadyExistsException;
 import pl.java.healthylifestyle.food.exception.dto.ErrorMessage;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @RestControllerAdvice
@@ -30,11 +32,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 ex.getMessage(), null, new ArrayList<>()), new HttpHeaders(), HttpStatus.FORBIDDEN);
     }
 
-//    @ExceptionHandler(MeasurementAlreadyExistsException.class)
-//    protected ResponseEntity<ErrorMessage> handleMeasurementAlreadyExistsException(MeasurementAlreadyExistsException ex) {
-//        ErrorMessage errorMessage = getErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage(), ex.getErrorLabel(), Collections.emptyList());
-//        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
-//    }
+    @ExceptionHandler(FoodAlreadyExistsException.class)
+    protected ResponseEntity<ErrorMessage> handleMeasurementAlreadyExistsException(FoodAlreadyExistsException ex) {
+        ErrorMessage errorMessage = getErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage(), ex.getErrorLabel(), Collections.emptyList());
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+    }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
