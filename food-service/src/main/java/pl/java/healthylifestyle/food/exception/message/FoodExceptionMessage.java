@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 public enum FoodExceptionMessage {
 
     FOOD_NOT_FOUND_ERROR("Food %s not found"),
-    FOOD_ALREADY_EXISTS_ERROR("Food %s already exists");
+    FOOD_ALREADY_EXISTS_ERROR("Food %s with size %f already exists");
 
     private final String message;
 }

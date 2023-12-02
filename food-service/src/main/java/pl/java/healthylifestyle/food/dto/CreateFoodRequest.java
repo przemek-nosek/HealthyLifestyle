@@ -2,12 +2,12 @@ package pl.java.healthylifestyle.food.dto;
 
 import lombok.Builder;
 import pl.java.healthylifestyle.food.entity.Allergen;
-import pl.java.healthylifestyle.food.entity.Shop;
+import pl.java.healthylifestyle.food.entity.Unit;
 
 import java.util.Set;
 
 @Builder
-public record CreateFoodRequest(
+public record CreateFoodRequest( //todo: validation
         String name,
         double energy,
         double carbohydrate,
@@ -17,8 +17,9 @@ public record CreateFoodRequest(
         double saturatedFat,
         double fiber,
         double salt,
+        double size,
+        Unit unit,
         String producer,
-        Set<Shop> shops,
         Set<Allergen> allergens
 ) {
 }

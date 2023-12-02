@@ -5,7 +5,6 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import pl.java.healthylifestyle.food.entity.converter.AllergenEnumSetToStringConverter;
-import pl.java.healthylifestyle.food.entity.converter.ShopEnumSetToStringConverter;
 
 import java.util.Set;
 
@@ -31,15 +30,17 @@ public class Food {
     private double saturatedFat;
     private double fiber;
     private double salt;
+    private double size;
+    private Unit unit;
     private String producer;
-    @Convert(converter = ShopEnumSetToStringConverter.class)
-    private Set<Shop> shops;
     @Convert(converter = AllergenEnumSetToStringConverter.class)
     private Set<Allergen> allergens;
-//    private byte[] files;
     private boolean verified;
     @CreatedBy
     @Column(updatable = false)
     private String createdBy;
     private String verifiedBy;
+
+
+    //todo: byte[] image of a product
 }
